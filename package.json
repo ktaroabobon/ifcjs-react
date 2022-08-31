@@ -13,6 +13,8 @@
     "@vitejs/plugin-react": "^2.0.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "three": "^0.135.0",
+    "web-ifc-viewer": "^1.0.103"
   }
 }

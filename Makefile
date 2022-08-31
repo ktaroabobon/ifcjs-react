@@ -11,6 +11,9 @@ $(DIST):
 setup:
 	yarn install
 
+add:
+	yarn add $(package)
+
 clean:
 	-rm -rf $(DIST)
 
