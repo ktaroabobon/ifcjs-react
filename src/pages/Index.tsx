@@ -5,6 +5,9 @@ import { useState } from "react";
 
 export const Index: React.FC = () => {
   const [count, setCount] = useState(0);
+  const [bcfDialogOpen, setBcfDialogOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [loadingIfc, setLoadingIfc] = useState(false);
 
   return (
     <div>

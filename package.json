@@ -4,17 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
+    "@react-three/drei": "^9.25.2",
+    "@react-three/fiber": "^8.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/three": "^0.143.2",
     "@vitejs/plugin-react": "^2.0.1",
+    "prettier": "2.7.1",
+    "three": "^0.143.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
-    "prettier": "2.7.1",
-    "three": "^0.135.0",
     "web-ifc-viewer": "^1.0.103"
   }
 }
