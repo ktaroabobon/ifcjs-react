@@ -12,7 +12,7 @@ setup:
 	yarn install
 
 clean:
-	-rm -rf $(DIST)/*
+	-rm -rf $(DIST)
 
 build: ENVIRONMENT=development
 build: VITE_OPTS=
@@ -33,6 +33,7 @@ fmt:
 	yarn run prettier --write .
 
 deploy:
+	$(MAKE) clean
 	$(MAKE) fmt
 	$(MAKE) build
 	bash deploy.sh
