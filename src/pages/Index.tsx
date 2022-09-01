@@ -38,7 +38,6 @@ export const Index: React.FC = () => {
         <Controls />
         <Light />
         <Helper />
-        <pointLight position={[0, 0, 0]} />
         <Box position={[-1.2, 0, 0]} />
         <Box position={[1.2, 0, 0]} />
       </Canvas>
