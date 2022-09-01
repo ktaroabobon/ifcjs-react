@@ -2,6 +2,7 @@ import React from "react";
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
+import { Controls } from "../components/Controls";
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
@@ -32,8 +33,9 @@ export const Index: React.FC = () => {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Canvas>
+        <Controls />
         <ambientLight />
-        <pointLight position={[10, 10, 10]} />
+        <pointLight position={[0, 0, 0]} />
         <Box position={[-1.2, 0, 0]} />
         <Box position={[1.2, 0, 0]} />
       </Canvas>
