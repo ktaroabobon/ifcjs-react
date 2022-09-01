@@ -5,6 +5,7 @@ import { Mesh } from "three";
 import { Controls } from "../components/Controls";
 import { Light } from "../components/Light";
 import { Helper } from "../components/Helper";
+import { FileInput } from "../components/FileInput";
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
@@ -15,7 +16,6 @@ export const Box: React.FC<BoxProps> = (props) => {
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
   useFrame(() => (mesh.current.rotation.x += 0.01));
-
   return (
     <mesh
       {...props}
@@ -32,8 +32,12 @@ export const Box: React.FC<BoxProps> = (props) => {
 };
 
 export const Index: React.FC = () => {
+  const [loaded, setLoaded] = useState(false);
+  const [loadingIfc, setLoadingIfc] = useState(false);
+
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
+      <FileInput />
       <Canvas>
         <Controls />
         <Light />
