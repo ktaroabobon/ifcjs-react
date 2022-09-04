@@ -1,4 +1,3 @@
-import React from "react";
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
@@ -32,9 +31,6 @@ export const Box: React.FC<BoxProps> = (props) => {
 };
 
 export const Index: React.FC = () => {
-  const [loaded, setLoaded] = useState(false);
-  const [loadingIfc, setLoadingIfc] = useState(false);
-
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <FileInput />
