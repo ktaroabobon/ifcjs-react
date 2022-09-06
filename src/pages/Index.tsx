@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
-import { Controls } from "../components/Controls";
-import { Light } from "../components/Light";
-import { Helper } from "../components/Helper";
-import { FileInput } from "../components/FileInput";
+import { Controls } from "../components/Controls/Controls";
+import { Light } from "../components/Light/Light";
+import { Helper } from "../components/Helper/Helper";
+import { FileInput } from "../components/FileInput/FileInput";
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
