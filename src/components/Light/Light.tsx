@@ -5,9 +5,9 @@ export const Light: React.FC = () => {
 
   return (
     <>
-      // 環境光源
+      {/* 環境光源*/}
       <ambientLight color={lightColor} intensity={0.5} />
-      // 平行光源
+      {/* 平行光源*/}
       <directionalLight
         color={lightColor}
         position={[0, 10, 0]}
