@@ -6,6 +6,9 @@ export const Controls = () => {
   const { camera, gl } = useThree();
 
   useEffect(() => {
+    camera.position.x = 15;
+    camera.position.y = 13;
+    camera.position.z = 8;
     const controls = new OrbitControls(camera, gl.domElement);
 
     controls.enableDamping = true;

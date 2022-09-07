@@ -1,44 +1,73 @@
-import React from "react";
-import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
-import { Controls } from "../components/Controls";
-
-type BoxProps = {
-  position: [x: number, y: number, z: number];
-};
-
-export const Box: React.FC<BoxProps> = (props) => {
-  const mesh = useRef<Mesh>(null!);
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
-  useFrame(() => (mesh.current.rotation.x += 0.01));
-
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? 1.5 : 1}
-      onClick={() => setActive(!active)}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-    </mesh>
-  );
-};
+import React, {createRef, useEffect, useState} from "react";
+// import {Canvas} from "@react-three/fiber"
+// import {Controls} from "../components/Controls/Controls";
+// import {Light} from "../components/Light/Light";
+// import {Helper} from "../components/Helper/Helper";
+import {Backdrop, CircularProgress} from "@mui/material";
+import {IfcContainer} from "../components/IFCContainer/IfcContainer";
+import {IfcViewerAPI} from "web-ifc-viewer";
 
 export const Index: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+
+  const ifcContainerRef = createRef<HTMLDivElement>();
+  const [ifcViewer, setIfcViewer] = useState<IfcViewerAPI>();
+
+  useEffect(() => {
+    if (ifcContainerRef.current) {
+      const container = ifcContainerRef.current;
+      const ifcViewer = new IfcViewerAPI({container: container});
+      ifcViewer.IFC.setWasmPath('../../');
+      ifcViewer.IFC.loader.ifcManager.applyWebIfcConfig({
+        COORDINATE_TO_ORIGIN: true,
+        USE_FAST_BOOLS: false
+      });
+      setIfcViewer(ifcViewer);
+    }
+  }, []);
+
+  const ifcOnLoad = async (e: any) => {
+    const file = e && e.target && e.target.files && e.target.files[0];
+    if (file && ifcViewer) {
+      setLoading(true);
+      console.log('loading file');
+      const model = await ifcViewer.IFC.loadIfc(file, true);
+      console.log('build model');
+      await ifcViewer.shadowDropper.renderShadow(model.modelID);
+      console.log('render shadow');
+      setLoading(false);
+      console.log('done');
+      console.log(ifcViewer);
+    }
+  }
+
+
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <Canvas>
-        <Controls />
-        <ambientLight />
-        <pointLight position={[0, 0, 0]} />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
-      </Canvas>
+    <div style={{width: "100vw", height: "100vh"}}>
+      <input
+        type="file"
+        accept=".ifc"
+        id={"fileInput"}
+        onChange={ifcOnLoad}
+      />
+      {/*<Canvas>*/}
+      {/*  <Controls/>*/}
+      {/*  <Light/>*/}
+      {/*  <Helper/>*/}
+      {/*</Canvas>*/}
+      <IfcContainer ref={ifcContainerRef} viewer={ifcViewer}/>
+      <Backdrop
+        style={{
+          zIndex: 100,
+          display: "flex",
+          alignItems: "center",
+          alignContent: "center"
+        }}
+        open={loading}
+      >
+        <CircularProgress/>
+      </Backdrop>
     </div>
+
   );
 };
