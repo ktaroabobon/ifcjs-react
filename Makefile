@@ -9,7 +9,11 @@ $(DIST):
 	@mkdir $(DIST)
 
 setup:
+ifneq (,$(CI))
+	yarn install --frozen-lockfile
+else
 	yarn install
+endif
 
 add:
 	yarn add $(package)
@@ -33,7 +37,18 @@ build/serve:
 	yarn run vite serve
 
 fmt:
-	yarn run prettier --write .
+ifneq (,$(CI))
+	yarn run prettier . --check
+else
+	yarn run prettier . --write
+endif
+
+lint:
+	yarn run eslint .
+
+typecheck: TSC_OPTS=
+typecheck:
+	yarn run tsc --noEmit $(TSC_OPTS)
 
 deploy:
 	$(MAKE) clean
