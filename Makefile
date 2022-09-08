@@ -49,9 +49,3 @@ lint:
 typecheck: TSC_OPTS=
 typecheck:
 	yarn run tsc --noEmit $(TSC_OPTS)
-
-deploy:
-	$(MAKE) clean
-	$(MAKE) fmt
-	$(MAKE) build
-	bash deploy.sh
