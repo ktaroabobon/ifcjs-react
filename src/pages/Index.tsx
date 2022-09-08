@@ -1,11 +1,11 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, {createRef, useEffect, useState} from "react";
 // import {Canvas} from "@react-three/fiber"
 // import {Controls} from "../components/Controls/Controls";
 // import {Light} from "../components/Light/Light";
 // import {Helper} from "../components/Helper/Helper";
-import { Backdrop, Box, CircularProgress } from "@mui/material";
-import { IfcContainer } from "../components/IFCContainer/IfcContainer";
-import { IfcViewerAPI } from "web-ifc-viewer";
+import {Backdrop, Box, CircularProgress, CssBaseline} from "@mui/material";
+import {IfcContainer} from "../components/IFCContainer/IfcContainer";
+import {IfcViewerAPI} from "web-ifc-viewer";
 
 export const Index: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ export const Index: React.FC = () => {
   useEffect(() => {
     if (ifcContainerRef.current) {
       const container = ifcContainerRef.current;
-      const ifcViewer = new IfcViewerAPI({ container: container });
+      const ifcViewer = new IfcViewerAPI({container: container});
       ifcViewer.IFC.loader.ifcManager.applyWebIfcConfig({
         COORDINATE_TO_ORIGIN: true,
         USE_FAST_BOOLS: false,
@@ -41,8 +41,8 @@ export const Index: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <div style={{ width: "100vw", height: "100vh" }}>
+    <Box sx={{display: "flex"}}>
+      <div style={{width: "100vw", height: "100vh"}}>
         <input
           type="file"
           accept=".ifc"
@@ -54,7 +54,7 @@ export const Index: React.FC = () => {
         {/*  <Light/>*/}
         {/*  <Helper/>*/}
         {/*</Canvas>*/}
-        <IfcContainer ref={ifcContainerRef} viewer={ifcViewer} />
+        <IfcContainer ref={ifcContainerRef} viewer={ifcViewer}/>
         <Backdrop
           style={{
             zIndex: 100,
@@ -64,7 +64,7 @@ export const Index: React.FC = () => {
           }}
           open={loading}
         >
-          <CircularProgress />
+          <CircularProgress/>
         </Backdrop>
       </div>
     </Box>

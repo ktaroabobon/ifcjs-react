@@ -1,12 +1,14 @@
 import "./App.css";
-import { Header } from "./components/Header/Header";
-import { Index } from "./pages/Index";
+import {Index} from "./pages/Index";
+import {CssBaseline} from "@mui/material";
+import {Navibar} from "./components/Navibar/Navibar";
 
 export function App() {
   return (
     <div className="App">
-      <Header />
-      <Index />
+      <CssBaseline/>
+      <Navibar/>
+      <Index/>
     </div>
   );
 }
