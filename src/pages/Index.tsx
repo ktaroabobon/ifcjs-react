@@ -3,7 +3,7 @@ import React, { createRef, useEffect, useState } from "react";
 // import {Controls} from "../components/Controls/Controls";
 // import {Light} from "../components/Light/Light";
 // import {Helper} from "../components/Helper/Helper";
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop, Box, CircularProgress } from "@mui/material";
 import { IfcContainer } from "../components/IFCContainer/IfcContainer";
 import { IfcViewerAPI } from "web-ifc-viewer";
 
@@ -41,25 +41,32 @@ export const Index: React.FC = () => {
   };
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <input type="file" accept=".ifc" id={"fileInput"} onChange={ifcOnLoad} />
-      {/*<Canvas>*/}
-      {/*  <Controls/>*/}
-      {/*  <Light/>*/}
-      {/*  <Helper/>*/}
-      {/*</Canvas>*/}
-      <IfcContainer ref={ifcContainerRef} viewer={ifcViewer} />
-      <Backdrop
-        style={{
-          zIndex: 100,
-          display: "flex",
-          alignItems: "center",
-          alignContent: "center",
-        }}
-        open={loading}
-      >
-        <CircularProgress />
-      </Backdrop>
-    </div>
+    <Box sx={{ display: "flex" }}>
+      <div style={{ width: "100vw", height: "100vh" }}>
+        <input
+          type="file"
+          accept=".ifc"
+          id={"fileInput"}
+          onChange={ifcOnLoad}
+        />
+        {/*<Canvas>*/}
+        {/*  <Controls/>*/}
+        {/*  <Light/>*/}
+        {/*  <Helper/>*/}
+        {/*</Canvas>*/}
+        <IfcContainer ref={ifcContainerRef} viewer={ifcViewer} />
+        <Backdrop
+          style={{
+            zIndex: 100,
+            display: "flex",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+          open={loading}
+        >
+          <CircularProgress />
+        </Backdrop>
+      </div>
+    </Box>
   );
 };
