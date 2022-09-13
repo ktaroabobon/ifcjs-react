@@ -1,12 +1,18 @@
-import React, {createRef, useEffect, useState} from "react";
-import {Backdrop, Box, CircularProgress, CssBaseline, useTheme} from "@mui/material";
-import {IfcContainer} from "../components/IFCContainer/IfcContainer";
-import {IfcViewerAPI} from "web-ifc-viewer";
-import {Color} from "three";
-import {DrawerContent, DrawerHeader} from "../components/Drawer/Drawer";
-import {HelperDialog} from "../components/Helper/Helper";
-import {SnackbarContent} from "../components/Snackbar/Snackbar";
-import {Navibar} from "../components/Navibar/Navibar";
+import React, { createRef, useEffect, useState } from "react";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  CssBaseline,
+  useTheme,
+} from "@mui/material";
+import { IfcContainer } from "../components/IFCContainer/IfcContainer";
+import { IfcViewerAPI } from "web-ifc-viewer";
+import { Color } from "three";
+import { DrawerContent, DrawerHeader } from "../components/Drawer/Drawer";
+import { HelperDialog } from "../components/Helper/Helper";
+import { SnackbarContent } from "../components/Snackbar/Snackbar";
+import { Navibar } from "../components/Navibar/Navibar";
 
 export const Index: React.FC<{}> = () => {
   const theme = useTheme();
@@ -63,8 +69,8 @@ export const Index: React.FC<{}> = () => {
 
   return (
     <>
-      <Box sx={{display: "flex"}}>
-        <CssBaseline/>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
         <Navibar
           isDrawerOpen={isDrawerOpen}
           setIsDrawerOpen={setIsDrawerOpen}
@@ -77,17 +83,17 @@ export const Index: React.FC<{}> = () => {
           ifcOnLoad={ifcOnLoad}
           setIsDialogOpen={setIsDialogOpen}
         />
-        <Box component={"main"} sx={{flexGrow: 1}}>
-          <DrawerHeader/>
-          <IfcContainer ref={ifcContainerRef} viewer={ifcViewer}/>
+        <Box component={"main"} sx={{ flexGrow: 1 }}>
+          <DrawerHeader />
+          <IfcContainer ref={ifcContainerRef} viewer={ifcViewer} />
         </Box>
       </Box>
 
       <Backdrop
-        sx={{color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1}}
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
       >
-        <CircularProgress/>
+        <CircularProgress />
       </Backdrop>
 
       <HelperDialog
