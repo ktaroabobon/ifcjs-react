@@ -1,10 +1,6 @@
-import React, { forwardRef } from "react";
-import { IfcViewerAPI } from "web-ifc-viewer";
-import { Canvas } from "@react-three/fiber";
-import { Helper } from "../Helper/Helper";
-import { Light } from "../Light/Light";
-import { Controls } from "../Controls/Controls";
-import { Grid, Popover, Typography } from "@mui/material";
+import React, {forwardRef, useState, Fragment} from "react";
+import {IfcViewerAPI} from "web-ifc-viewer";
+import {Grid, Popover, Typography} from "@mui/material";
 
 interface IfcRecord {
   [key: string]: string;
@@ -16,10 +12,10 @@ interface IfcContainerProps {
 
 export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
   (props, ref) => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(
       null
     );
-    const [curIfcRecords, setIfcRecords] = React.useState<IfcRecord>();
+    const [curIfcRecords, setIfcRecords] = useState<IfcRecord>();
 
     const viewer = props.viewer;
     const open = Boolean(anchorEl);
@@ -76,6 +72,12 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
           onDoubleClick={ifcOnClick}
           onContextMenu={ifcOnRightClick}
           onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
+          style={{
+            position: "relative",
+            width: "100vw",
+            height: "100vh",
+            overflow: "hidden",
+          }}
         />
         <Popover
           id={id}
@@ -87,20 +89,20 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
             horizontal: "right",
           }}
         >
-          <Grid container component={"dl"} spacing={2} sx={{ p: 2 }}>
+          <Grid container component={"dl"} spacing={2} sx={{p: 2}}>
             <Grid item>
               {curIfcRecords &&
                 Object.keys(curIfcRecords).map(
                   (key) =>
                     curIfcRecords[key] && (
-                      <React.Fragment key={key}>
+                      <Fragment key={key}>
                         <Typography component="dt" variant="body2">
                           {key}
                         </Typography>
-                        <Typography sx={{ pb: 1 }} component={"dd"}>
+                        <Typography sx={{pb: 1}} component={"dd"}>
                           {curIfcRecords[key]}
                         </Typography>
-                      </React.Fragment>
+                      </Fragment>
                     )
                 )}
             </Grid>
