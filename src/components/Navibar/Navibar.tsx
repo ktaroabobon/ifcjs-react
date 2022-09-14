@@ -3,12 +3,8 @@ import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 export const Navibar: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-
   return (
     <AppBar position={"static"}>
-      {/*<AppBar position={"fixed"} open={isOpen}>*/}
       <Toolbar>
         <IconButton
           size={"large"}
@@ -16,7 +12,6 @@ export const Navibar: React.FC = () => {
           color={"inherit"}
           aria-label={"menu"}
           sx={{mr: 2}}
-          onClick={() => setIsOpen(true)}
         >
           <MenuIcon/>
         </IconButton>

@@ -1,9 +1,5 @@
 import React, {createRef, useEffect, useState} from "react";
-// import {Canvas} from "@react-three/fiber"
-// import {Controls} from "../components/Controls/Controls";
-// import {Light} from "../components/Light/Light";
-// import {Helper} from "../components/Helper/Helper";
-import {Backdrop, Box, CircularProgress, CssBaseline} from "@mui/material";
+import {Backdrop, Box, CircularProgress} from "@mui/material";
 import {IfcContainer} from "../components/IFCContainer/IfcContainer";
 import {IfcViewerAPI} from "web-ifc-viewer";
 
@@ -25,7 +21,7 @@ export const Index: React.FC = () => {
     }
   }, []);
 
-  const ifcOnLoad = async (e: any) => {
+  const ifcOnLoad = async (e) => {
     const file = e && e.target && e.target.files && e.target.files[0];
     if (file && ifcViewer) {
       setLoading(true);
@@ -49,11 +45,6 @@ export const Index: React.FC = () => {
           id={"fileInput"}
           onChange={ifcOnLoad}
         />
-        {/*<Canvas>*/}
-        {/*  <Controls/>*/}
-        {/*  <Light/>*/}
-        {/*  <Helper/>*/}
-        {/*</Canvas>*/}
         <IfcContainer ref={ifcContainerRef} viewer={ifcViewer}/>
         <Backdrop
           style={{

@@ -1,10 +1,6 @@
-import React, { forwardRef } from "react";
-import { IfcViewerAPI } from "web-ifc-viewer";
-import { Canvas } from "@react-three/fiber";
-import { Helper } from "../Helper/Helper";
-import { Light } from "../Light/Light";
-import { Controls } from "../Controls/Controls";
-import { Grid, Popover, Typography } from "@mui/material";
+import React, {forwardRef} from "react";
+import {IfcViewerAPI} from "web-ifc-viewer";
+import {Grid, Popover, Typography} from "@mui/material";
 
 interface IfcRecord {
   [key: string]: string;
@@ -15,7 +11,7 @@ interface IfcContainerProps {
 }
 
 export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
-  (props, ref) => {
+  function IfcContainerFunc(props, ref) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
       null
     );
@@ -29,7 +25,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
       setAnchorEl(null);
     };
 
-    const ifcOnClick = async (event: any) => {
+    const ifcOnClick = async (event) => {
       if (viewer) {
         const result = await viewer.IFC.pickIfcItem(true);
         if (result) {
@@ -45,7 +41,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
           );
           // convert props to record
           if (props) {
-            let ifcRecords: IfcRecord = {};
+            const ifcRecords: IfcRecord = {};
             ifcRecords["Entity Type"] = type;
             ifcRecords["GlobalId"] = props.GlobalId && props.GlobalId?.value;
             ifcRecords["Name"] = props.Name && props.Name?.value;
@@ -87,7 +83,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
             horizontal: "right",
           }}
         >
-          <Grid container component={"dl"} spacing={2} sx={{ p: 2 }}>
+          <Grid container component={"dl"} spacing={2} sx={{p: 2}}>
             <Grid item>
               {curIfcRecords &&
                 Object.keys(curIfcRecords).map(
@@ -97,7 +93,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
                         <Typography component="dt" variant="body2">
                           {key}
                         </Typography>
-                        <Typography sx={{ pb: 1 }} component={"dd"}>
+                        <Typography sx={{pb: 1}} component={"dd"}>
                           {curIfcRecords[key]}
                         </Typography>
                       </React.Fragment>
