@@ -21,7 +21,7 @@ export const Index: React.FC = () => {
     }
   }, []);
 
-  const ifcOnLoad = async (e) => {
+  const ifcOnLoad = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e && e.target && e.target.files && e.target.files[0];
     if (file && ifcViewer) {
       setLoading(true);
