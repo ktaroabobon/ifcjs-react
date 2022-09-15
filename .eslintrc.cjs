@@ -25,5 +25,7 @@ module.exports = {
     "react/jsx-key": ["error"],
     // propsの ({ hoge }) みたいな展開が怒られるの面倒なのでignore
     "react/prop-types": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-uses-react": ["off"],
   },
 };

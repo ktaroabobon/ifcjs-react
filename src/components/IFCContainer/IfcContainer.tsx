@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, Fragment } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
 import { Grid, Popover, Typography } from "@mui/material";
 
@@ -68,6 +68,12 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
           onDoubleClick={ifcOnDoubleClick}
           onContextMenu={ifcOnRightClick}
           onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
+          style={{
+            position: "relative",
+            width: "100vw",
+            height: "100vh",
+            overflow: "hidden",
+          }}
         />
         <Popover
           id={id}
@@ -84,14 +90,14 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
                 Object.keys(curIfcRecords).map(
                   (key) =>
                     curIfcRecords[key] && (
-                      <React.Fragment key={key}>
+                      <Fragment key={key}>
                         <Typography component="dt" variant="body2">
                           {key}
                         </Typography>
                         <Typography sx={{ pb: 1 }} component={"dd"}>
                           {curIfcRecords[key]}
                         </Typography>
-                      </React.Fragment>
+                      </Fragment>
                     )
                 )}
             </Grid>
