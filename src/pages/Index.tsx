@@ -30,10 +30,12 @@ export const Index: React.FC = () => {
   useEffect(() => {
     if (ifcContainerRef.current) {
       const container = ifcContainerRef.current;
+      console.log("container", container);
       const ifcViewer = new IfcViewerAPI({
         container,
         backgroundColor: new Color(0xffffff),
       });
+      console.log("ifcViewer", ifcViewer);
       ifcViewer.axes.setAxes();
       ifcViewer.grid.setGrid();
       ifcViewer.IFC.loader.ifcManager.applyWebIfcConfig({
@@ -41,6 +43,7 @@ export const Index: React.FC = () => {
         USE_FAST_BOOLS: false,
       });
       setIfcViewer(ifcViewer);
+      console.log("set ifcViewer");
     }
   }, []);
 

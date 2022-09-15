@@ -76,7 +76,7 @@ export const DrawerContent: React.FC<{
 
   const toggleClippingPlanes = () => {
     if (props.viewer) {
-      props.viewer.toggleClippingPlanes();
+      props.viewer.clipper.toggle();
       if (props.viewer.clipper.active) {
         setClippingPaneSelected(true);
       } else {
