@@ -14,7 +14,7 @@ import { HelperDialog } from "../components/Helper/Helper";
 import { SnackbarContent } from "../components/Snackbar/Snackbar";
 import { Navibar } from "../components/Navibar/Navibar";
 
-export const Index: React.FC<{}> = () => {
+export const Index: React.FC = () => {
   const theme = useTheme();
 
   const [loading, setLoading] = useState(false);
@@ -44,7 +44,7 @@ export const Index: React.FC<{}> = () => {
     }
   }, []);
 
-  const ifcOnLoad = async (e: any) => {
+  const ifcOnLoad = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e && e.target && e.target.files && e.target.files[0];
     if (file && ifcViewer) {
       setIfcLoadingErrorMessage("");
