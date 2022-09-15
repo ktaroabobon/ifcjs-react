@@ -63,7 +63,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
     return (
       <>
         <div
-          id={"ifc-viewer-container"}
+          className={"ifcContainerViewer"}
           ref={ref}
           onDoubleClick={ifcOnDoubleClick}
           onContextMenu={ifcOnRightClick}
