@@ -69,7 +69,7 @@ export const DrawerContent: React.FC<{
   theme: Theme;
   setDrawerOpen: (open: boolean) => void;
   setIsDialogOpen: (open: boolean) => void;
-  ifcOnLoad: (e: any) => Promise<void>;
+  ifcOnLoad: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
   viewer: IfcViewerAPI | undefined;
 }> = (props) => {
   const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);

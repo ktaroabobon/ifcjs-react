@@ -34,8 +34,8 @@ export const Index: React.FC = () => {
         container,
         backgroundColor: new Color(0xffffff),
       });
-      ifcViewer.addAxes();
-      ifcViewer.addGrid();
+      ifcViewer.axes.setAxes();
+      ifcViewer.grid.setGrid();
       ifcViewer.IFC.loader.ifcManager.applyWebIfcConfig({
         COORDINATE_TO_ORIGIN: true,
         USE_FAST_BOOLS: false,
@@ -63,7 +63,7 @@ export const Index: React.FC = () => {
     }
   };
 
-  const ifcOnLoadError = async (err: any) => {
+  const ifcOnLoadError = async (err: React.ChangeEvent<HTMLInputElement>) => {
     setIfcLoadingErrorMessage(err.toString());
   };
 
