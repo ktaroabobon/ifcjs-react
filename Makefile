@@ -44,8 +44,13 @@ else
 endif
 
 lint:
-	yarn run eslint .
+	yarn run eslint src
 
 typecheck: TSC_OPTS=
 typecheck:
 	yarn run tsc --noEmit $(TSC_OPTS)
+
+test/ci:
+	$(MAKE) lint
+	$(MAKE) typecheck
+	$(MAKE) fmt

@@ -1,9 +1,5 @@
 import React, { forwardRef } from "react";
 import { IfcViewerAPI } from "web-ifc-viewer";
-import { Canvas } from "@react-three/fiber";
-import { Helper } from "../Helper/Helper";
-import { Light } from "../Light/Light";
-import { Controls } from "../Controls/Controls";
 import { Grid, Popover, Typography } from "@mui/material";
 
 interface IfcRecord {
@@ -15,23 +11,20 @@ interface IfcContainerProps {
 }
 
 export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
-  (props, ref) => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-      null
-    );
+  function IfcContainerFunc(props, ref) {
+    const [popoverOpen, setPopoverOpen] = React.useState(false);
     const [curIfcRecords, setIfcRecords] = React.useState<IfcRecord>();
 
     const viewer = props.viewer;
-    const open = Boolean(anchorEl);
-    const id = open ? "simple-popover" : undefined;
+    const id = popoverOpen ? "simple-popover" : undefined;
 
     const handleClose = () => {
-      setAnchorEl(null);
+      setPopoverOpen(false);
     };
 
-    const ifcOnClick = async (event: any) => {
+    const ifcOnDoubleClick = async () => {
       if (viewer) {
-        const result = await viewer.IFC.pickIfcItem(true);
+        const result = await viewer.IFC.selector.pickIfcItem(true, true);
         if (result) {
           const props = await viewer.IFC.getProperties(
             result.modelID,
@@ -45,7 +38,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
           );
           // convert props to record
           if (props) {
-            let ifcRecords: IfcRecord = {};
+            const ifcRecords: IfcRecord = {};
             ifcRecords["Entity Type"] = type;
             ifcRecords["GlobalId"] = props.GlobalId && props.GlobalId?.value;
             ifcRecords["Name"] = props.Name && props.Name?.value;
@@ -55,8 +48,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
               props.PredefinedType && props.PredefinedType?.value;
             setIfcRecords(ifcRecords);
           }
-
-          setAnchorEl(event.target);
+          setPopoverOpen(true);
         }
       }
     };
@@ -73,14 +65,13 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
         <div
           id={"ifc-viewer-container"}
           ref={ref}
-          onDoubleClick={ifcOnClick}
+          onDoubleClick={ifcOnDoubleClick}
           onContextMenu={ifcOnRightClick}
           onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
         />
         <Popover
           id={id}
-          open={open}
-          anchorEl={anchorEl}
+          open={popoverOpen}
           onClose={handleClose}
           anchorOrigin={{
             vertical: "top",
