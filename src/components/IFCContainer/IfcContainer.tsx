@@ -12,20 +12,17 @@ interface IfcContainerProps {
 
 export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
   function IfcContainerFunc(props, ref) {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-      null
-    );
+    const [popoverOpen, setPopoverOpen] = React.useState(false);
     const [curIfcRecords, setIfcRecords] = React.useState<IfcRecord>();
 
     const viewer = props.viewer;
-    const open = Boolean(anchorEl);
-    const id = open ? "simple-popover" : undefined;
+    const id = popoverOpen ? "simple-popover" : undefined;
 
     const handleClose = () => {
-      setAnchorEl(null);
+      setPopoverOpen(false);
     };
 
-    const ifcOnClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const ifcOnDoubleClick = async () => {
       if (viewer) {
         const result = await viewer.IFC.selector.pickIfcItem(true, true);
         if (result) {
@@ -51,7 +48,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
               props.PredefinedType && props.PredefinedType?.value;
             setIfcRecords(ifcRecords);
           }
-          setAnchorEl(event.currentTarget);
+          setPopoverOpen(true);
         }
       }
     };
@@ -65,18 +62,16 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
 
     return (
       <>
-        <div id={"ifc-viewer-container"}>
-          <span
-            ref={ref}
-            onDoubleClick={ifcOnClick}
-            onContextMenu={ifcOnRightClick}
-            onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
-          />
-        </div>
+        <div
+          id={"ifc-viewer-container"}
+          ref={ref}
+          onDoubleClick={ifcOnDoubleClick}
+          onContextMenu={ifcOnRightClick}
+          onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
+        />
         <Popover
           id={id}
-          open={open}
-          anchorEl={anchorEl}
+          open={popoverOpen}
           onClose={handleClose}
           anchorOrigin={{
             vertical: "top",
