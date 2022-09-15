@@ -1,5 +1,5 @@
 import React from "react";
-import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 export const Navibar: React.FC = () => {
@@ -11,11 +11,11 @@ export const Navibar: React.FC = () => {
           edge={"start"}
           color={"inherit"}
           aria-label={"menu"}
-          sx={{mr: 2}}
+          sx={{ mr: 2 }}
         >
-          <MenuIcon/>
+          <MenuIcon />
         </IconButton>
-        <Typography variant={"h6"} component={"div"} sx={{flexGrow: 1}}>
+        <Typography variant={"h6"} component={"div"} sx={{ flexGrow: 1 }}>
           IFC.js in React!!!
         </Typography>
       </Toolbar>

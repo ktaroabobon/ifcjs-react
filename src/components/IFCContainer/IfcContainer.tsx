@@ -1,6 +1,6 @@
-import React, {forwardRef} from "react";
-import {IfcViewerAPI} from "web-ifc-viewer";
-import {Grid, Popover, Typography} from "@mui/material";
+import React, { forwardRef } from "react";
+import { IfcViewerAPI } from "web-ifc-viewer";
+import { Grid, Popover, Typography } from "@mui/material";
 
 interface IfcRecord {
   [key: string]: string;
@@ -25,9 +25,9 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
       setAnchorEl(null);
     };
 
-    const ifcOnClick = async (event) => {
+    const ifcOnClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
       if (viewer) {
-        const result = await viewer.IFC.pickIfcItem(true);
+        const result = await viewer.IFC.selector.pickIfcItem(true, true);
         if (result) {
           const props = await viewer.IFC.getProperties(
             result.modelID,
@@ -51,8 +51,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
               props.PredefinedType && props.PredefinedType?.value;
             setIfcRecords(ifcRecords);
           }
-
-          setAnchorEl(event.target);
+          setAnchorEl(event.currentTarget);
         }
       }
     };
@@ -66,13 +65,14 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
 
     return (
       <>
-        <div
-          id={"ifc-viewer-container"}
-          ref={ref}
-          onDoubleClick={ifcOnClick}
-          onContextMenu={ifcOnRightClick}
-          onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
-        />
+        <div id={"ifc-viewer-container"}>
+          <span
+            ref={ref}
+            onDoubleClick={ifcOnClick}
+            onContextMenu={ifcOnRightClick}
+            onMouseMove={viewer && (() => viewer.IFC.selector.prePickIfcItem())}
+          />
+        </div>
         <Popover
           id={id}
           open={open}
@@ -83,7 +83,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
             horizontal: "right",
           }}
         >
-          <Grid container component={"dl"} spacing={2} sx={{p: 2}}>
+          <Grid container component={"dl"} spacing={2} sx={{ p: 2 }}>
             <Grid item>
               {curIfcRecords &&
                 Object.keys(curIfcRecords).map(
@@ -93,7 +93,7 @@ export const IfcContainer = forwardRef<HTMLDivElement, IfcContainerProps>(
                         <Typography component="dt" variant="body2">
                           {key}
                         </Typography>
-                        <Typography sx={{pb: 1}} component={"dd"}>
+                        <Typography sx={{ pb: 1 }} component={"dd"}>
                           {curIfcRecords[key]}
                         </Typography>
                       </React.Fragment>
