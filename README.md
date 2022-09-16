@@ -21,9 +21,3 @@ preview
 ```bash
 make build/serve
 ```
-
-deploy
-
-```bash
-make deploy
-```
