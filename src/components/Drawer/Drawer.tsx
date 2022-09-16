@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { styled, Theme, CSSObject } from "@mui/material/styles";
+import React, {useState} from "react";
+import {styled, Theme, CSSObject} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -15,8 +15,9 @@ import {
   CompareArrowsSharp,
   FolderOpenOutlined,
   HelpOutline,
+  BugReport
 } from "@mui/icons-material";
-import { IfcViewerAPI } from "web-ifc-viewer";
+import {IfcViewerAPI} from "web-ifc-viewer";
 
 const drawerWidth = 240;
 
@@ -38,7 +39,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   width: `calc(${theme.spacing(7)} + 1px)`,
 });
 
-export const DrawerHeader = styled("div")(({ theme }) => ({
+export const DrawerHeader = styled("div")(({theme}) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
@@ -49,7 +50,7 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})(({theme, open}) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
@@ -90,27 +91,27 @@ export const DrawerContent: React.FC<{
       <DrawerHeader>
         <IconButton onClick={() => props.setDrawerOpen(false)}>
           {props.theme.direction === "rtl" ? (
-            <ChevronRightIcon />
+            <ChevronRightIcon/>
           ) : (
-            <ChevronLeftIcon />
+            <ChevronLeftIcon/>
           )}
         </IconButton>
       </DrawerHeader>
-      <Divider />
+      <Divider/>
       <List>
         <input
           type="file"
           accept=".ifc"
           id={"file-input"}
           onChange={props.ifcOnLoad}
-          style={{ display: "none" }}
+          style={{display: "none"}}
         />
         <label htmlFor="file-input">
           <ListItemButton key={"open File"}>
             <ListItemIcon>
-              <FolderOpenOutlined />
+              <FolderOpenOutlined/>
             </ListItemIcon>
-            <ListItemText primary={"Open File"} />
+            <ListItemText primary={"Open File"}/>
           </ListItemButton>
         </label>
         <ListItemButton
@@ -119,21 +120,30 @@ export const DrawerContent: React.FC<{
           selected={isClippingPaneSelected}
         >
           <ListItemIcon>
-            <CompareArrowsSharp />
+            <CompareArrowsSharp/>
           </ListItemIcon>
-          <ListItemText primary={"Clipping Planes"} />
+          <ListItemText primary={"Clipping Planes"}/>
         </ListItemButton>
+        <ListItemButton
+          key={"check"}
+        >
+          <ListItemIcon>
+            <BugReport/>
+          </ListItemIcon>
+          <ListItemText primary={"Building Confirmation"}/>
+        </ListItemButton>
+
       </List>
-      <Divider />
+      <Divider/>
       <List>
         <ListItemButton
           key={"About"}
           onClick={() => props.setIsDialogOpen(true)}
         >
           <ListItemIcon>
-            <HelpOutline />
+            <HelpOutline/>
           </ListItemIcon>
-          <ListItemText primary={"About"} />
+          <ListItemText primary={"About"}/>
         </ListItemButton>
       </List>
     </Drawer>
