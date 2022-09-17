@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 
-export const HelperDialog: React.FC<{
+export const HelpDialog: React.FC<{
   setIsDialogOpen: (open: boolean) => void;
   isDialogOpen: boolean;
 }> = (props) => {

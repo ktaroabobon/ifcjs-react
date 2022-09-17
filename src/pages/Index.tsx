@@ -10,7 +10,7 @@ import { IfcContainer } from "../components/IFCContainer/IfcContainer";
 import { IfcViewerAPI } from "web-ifc-viewer";
 import { Color } from "three";
 import { DrawerContent, DrawerHeader } from "../components/Drawer/Drawer";
-import { HelperDialog } from "../components/Helper/Helper";
+import { HelpDialog } from "../components/Dialog/Dialog";
 import { SnackbarContent } from "../components/Snackbar/Snackbar";
 import { Navibar } from "../components/Navibar/Navibar";
 
@@ -99,7 +99,7 @@ export const Index: React.FC = () => {
         <CircularProgress />
       </Backdrop>
 
-      <HelperDialog
+      <HelpDialog
         setIsDialogOpen={setIsDialogOpen}
         isDialogOpen={isDialogOpen}
       />
