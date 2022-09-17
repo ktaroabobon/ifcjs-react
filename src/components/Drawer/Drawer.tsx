@@ -15,7 +15,8 @@ import {
   CompareArrowsSharp,
   FolderOpenOutlined,
   HelpOutline,
-  BugReport
+  BugReport,
+  Settings
 } from "@mui/icons-material";
 import {IfcViewerAPI} from "web-ifc-viewer";
 
@@ -132,7 +133,14 @@ export const DrawerContent: React.FC<{
           </ListItemIcon>
           <ListItemText primary={"Building Confirmation"}/>
         </ListItemButton>
-
+        <ListItemButton
+          key={"preferences"}
+        >
+          <ListItemIcon>
+            <Settings/>
+          </ListItemIcon>
+          <ListItemText primary={"Preferences"}/>
+        </ListItemButton>
       </List>
       <Divider/>
       <List>
