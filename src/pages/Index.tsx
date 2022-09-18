@@ -10,15 +10,18 @@ import { IfcContainer } from "../components/IFCContainer/IfcContainer";
 import { IfcViewerAPI } from "web-ifc-viewer";
 import { Color } from "three";
 import { DrawerContent, DrawerHeader } from "../components/Drawer/Drawer";
-import { HelpDialog } from "../components/Dialog/Dialog";
+import { HelpDialog } from "../components/Dialog/Help";
 import { SnackbarContent } from "../components/Snackbar/Snackbar";
 import { Navibar } from "../components/Navibar/Navibar";
+import { ConfirmationDialog } from "../components/Dialog/Confirmation";
 
 export const Index: React.FC = () => {
   const theme = useTheme();
 
   const [loading, setLoading] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isHelpDialogOpen, setIsHelpDialogOpen] = useState(false);
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
+    useState(false);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -84,7 +87,8 @@ export const Index: React.FC = () => {
           theme={theme}
           viewer={ifcViewer}
           ifcOnLoad={ifcOnLoad}
-          setIsDialogOpen={setIsDialogOpen}
+          setIsHelpDialogOpen={setIsHelpDialogOpen}
+          setIsConfirmationDialogOpen={setIsConfirmationDialogOpen}
         />
         <Box component={"main"} sx={{ flexGrow: 1 }}>
           <DrawerHeader />
@@ -99,9 +103,13 @@ export const Index: React.FC = () => {
         <CircularProgress />
       </Backdrop>
 
+      <ConfirmationDialog
+        setIsDialogOpen={setIsConfirmationDialogOpen}
+        isDialogOpen={isConfirmationDialogOpen}
+      />
       <HelpDialog
-        setIsDialogOpen={setIsDialogOpen}
-        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsHelpDialogOpen}
+        isDialogOpen={isHelpDialogOpen}
       />
 
       <SnackbarContent

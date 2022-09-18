@@ -15,6 +15,8 @@ import {
   CompareArrowsSharp,
   FolderOpenOutlined,
   HelpOutline,
+  BugReport,
+  Settings,
 } from "@mui/icons-material";
 import { IfcViewerAPI } from "web-ifc-viewer";
 
@@ -66,11 +68,12 @@ const Drawer = styled(MuiDrawer, {
 
 export const DrawerContent: React.FC<{
   isDrawerOpen: boolean;
-  theme: Theme;
   setDrawerOpen: (open: boolean) => void;
-  setIsDialogOpen: (open: boolean) => void;
-  ifcOnLoad: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
   viewer: IfcViewerAPI | undefined;
+  ifcOnLoad: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
+  theme: Theme;
+  setIsHelpDialogOpen: (open: boolean) => void;
+  setIsConfirmationDialogOpen: (open: boolean) => void;
 }> = (props) => {
   const [isClippingPaneSelected, setClippingPaneSelected] = useState(false);
 
@@ -123,12 +126,27 @@ export const DrawerContent: React.FC<{
           </ListItemIcon>
           <ListItemText primary={"Clipping Planes"} />
         </ListItemButton>
+        <ListItemButton
+          key={"check"}
+          onClick={() => props.setIsConfirmationDialogOpen(true)}
+        >
+          <ListItemIcon>
+            <BugReport />
+          </ListItemIcon>
+          <ListItemText primary={"Building Confirmation"} />
+        </ListItemButton>
+        <ListItemButton key={"preferences"}>
+          <ListItemIcon>
+            <Settings />
+          </ListItemIcon>
+          <ListItemText primary={"Preferences"} />
+        </ListItemButton>
       </List>
       <Divider />
       <List>
         <ListItemButton
           key={"About"}
-          onClick={() => props.setIsDialogOpen(true)}
+          onClick={() => props.setIsHelpDialogOpen(true)}
         >
           <ListItemIcon>
             <HelpOutline />
