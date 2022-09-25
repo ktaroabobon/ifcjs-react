@@ -7,7 +7,7 @@ Sample project to show how to use [IFC.js](https://ifcjs.github.io/info/ja/) in 
 install
 
 ```bash
-git clone git@github.com:ktaroabobon/ifcjs-react.git
+git clone https://github.com/ktaroabobon/ifcjs-react.git
 ```
 
 setup
