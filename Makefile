@@ -50,7 +50,13 @@ typecheck: TSC_OPTS=
 typecheck:
 	yarn run tsc --noEmit $(TSC_OPTS)
 
-test/ci:
+ci/demo:
 	$(MAKE) lint
 	$(MAKE) typecheck
 	$(MAKE) fmt
+
+test:
+	jest --config jest.config.json
+
+test/watch:
+	jest --config jest.config.json --watch
