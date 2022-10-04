@@ -66,6 +66,18 @@ export const Index: React.FC = () => {
       setLoading(false);
       console.log("done");
       console.log(ifcViewer);
+
+      const propetries = await ifcViewer.IFC.properties.serializeAllProperties(
+        model
+      );
+
+      const downloadFile = new File(propetries, "properties.json");
+      const link = document.createElement("a");
+      document.body.appendChild(link);
+      link.download = "properties.json";
+      link.href = URL.createObjectURL(downloadFile);
+      link.click();
+      link.remove();
     }
   };
 
