@@ -106,6 +106,7 @@ export const Index: React.FC = () => {
       <ConfirmationDialog
         setIsDialogOpen={setIsConfirmationDialogOpen}
         isDialogOpen={isConfirmationDialogOpen}
+        ifcViewer={ifcViewer}
       />
       <HelpDialog
         setIsDialogOpen={setIsHelpDialogOpen}

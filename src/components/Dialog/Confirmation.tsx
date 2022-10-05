@@ -17,17 +17,35 @@ const items = [
   {id: 1, name: "第22条第2号"},
 ];
 
-const CheckBuilding = (ifcViewer: IfcViewerAPI) => {
-  return
+const CheckBuilding = async (ifcViewer: IfcViewerAPI | undefined) => {
+  if (ifcViewer == undefined) {
+    console.log("ifcViewer is undefined");
+    return;
+  }
+
+  const data = await ifcViewer.IFC.loader.ifcManager.ifcAPI.ExportFileAsIFC(0);
+
+  const blob = new Blob([data], {type: "text/plain"});
+  const value = await blob.text();
+
+  //  valueをlzmaで圧縮する
+
+  //  圧縮したvalueをAPIに投げる
 }
 
 export const ConfirmationDialog: React.FC<{
   setIsDialogOpen: (open: boolean) => void;
   isDialogOpen: boolean;
+  ifcViewer: IfcViewerAPI | undefined;
 }> = (props) => {
   const handleClose = () => {
     props.setIsDialogOpen(false);
   };
+
+  const handleCheck = () => {
+    handleClose();
+    CheckBuilding(props.ifcViewer);
+  }
 
   const ConfirmationForm = (
     <>
@@ -53,7 +71,7 @@ export const ConfirmationDialog: React.FC<{
           <Button color={"error"} onClick={handleClose}>
             キャンセル
           </Button>
-          <Button color={"primary"} variant={"contained"} onClick={handleClose}>
+          <Button color={"primary"} variant={"contained"} onClick={handleCheck}>
             確認開始
           </Button>
         </DialogActions>
