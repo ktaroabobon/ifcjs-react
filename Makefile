@@ -29,13 +29,13 @@ build:
 
 build/development: VITE_OPTS=--sourcemap
 build/development:
-	$(MAKE) build ENVIRONMENT=development VITE_OPTS='--sourcemap'
+	export $$(cat .env.development) > /dev/null; $(MAKE) build ENVIRONMENT=development VITE_OPTS='--sourcemap'
 
 build/development/watch:
 	$(MAKE) build/development VITE_OPTS='--watch --sourcemap'
 
 build/serve:
-	yarn run vite serve
+	export $$(cat .env.development) > /dev/null; yarn run vite serve
 
 fmt:
 ifneq (,$(CI))

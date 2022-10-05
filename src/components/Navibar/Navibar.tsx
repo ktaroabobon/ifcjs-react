@@ -1,8 +1,9 @@
 import React from "react";
-import { IconButton, Toolbar, Typography } from "@mui/material";
+import {IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { styled } from "@mui/material/styles";
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from "@mui/material/AppBar";
+import {styled} from "@mui/material/styles";
+import {REACT_APP_API_HOST} from "../../../env/Index";
 
 const drawerWidth = 240;
 
@@ -12,7 +13,7 @@ interface AppBarProps extends MuiAppBarProps {
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({theme, open}) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -42,14 +43,14 @@ export const Navibar: React.FC<{
             aria-label={"open drawer"}
             sx={{
               marginRight: "36px",
-              ...(props.isDrawerOpen && { display: "none" }),
+              ...(props.isDrawerOpen && {display: "none"}),
             }}
             onClick={() => props.setIsDrawerOpen(true)}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
           <Typography variant={"h6"} component={"div"} noWrap marginX={"auto"}>
-            IFC.js in React!!!
+            IFC.js in React!!!{REACT_APP_API_HOST}
           </Typography>
         </Toolbar>
       </AppBar>
