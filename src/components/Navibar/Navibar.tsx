@@ -3,7 +3,6 @@ import {IconButton, Toolbar, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar, {AppBarProps as MuiAppBarProps} from "@mui/material/AppBar";
 import {styled} from "@mui/material/styles";
-import {REACT_APP_API_HOST} from "../../../env/Index";
 
 const drawerWidth = 240;
 
@@ -50,7 +49,7 @@ export const Navibar: React.FC<{
             <MenuIcon/>
           </IconButton>
           <Typography variant={"h6"} component={"div"} noWrap marginX={"auto"}>
-            IFC.js in React!!!{REACT_APP_API_HOST}
+            IFC.js in React!!!
           </Typography>
         </Toolbar>
       </AppBar>

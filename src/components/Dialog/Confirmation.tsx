@@ -10,14 +10,15 @@ import {
   Divider,
 } from "@mui/material";
 import React from "react";
+import {IfcViewerAPI} from "web-ifc-viewer";
 
 const items = [
   {id: 0, name: "第22条第1号"},
   {id: 1, name: "第22条第2号"},
 ];
 
-const CheckBuilding = () => {
-
+const CheckBuilding = (ifcViewer: IfcViewerAPI) => {
+  return
 }
 
 export const ConfirmationDialog: React.FC<{
