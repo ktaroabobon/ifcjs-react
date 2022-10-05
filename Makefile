@@ -12,6 +12,7 @@ setup:
 ifneq (,$(CI))
 	yarn install --frozen-lockfile
 else
+	cp .env.sample .env.development
 	yarn install
 endif
 

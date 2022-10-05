@@ -12,9 +12,13 @@ import {
 import React from "react";
 
 const items = [
-  { id: 0, name: "第22条第1号" },
-  { id: 1, name: "第22条第2号" },
+  {id: 0, name: "第22条第1号"},
+  {id: 1, name: "第22条第2号"},
 ];
+
+const CheckBuilding = () => {
+
+}
 
 export const ConfirmationDialog: React.FC<{
   setIsDialogOpen: (open: boolean) => void;
@@ -29,7 +33,7 @@ export const ConfirmationDialog: React.FC<{
       <FormControl>
         {items.map((item) => (
           <FormControlLabel
-            control={<Checkbox />}
+            control={<Checkbox/>}
             label={item.name}
             key={item.id}
           />
@@ -43,7 +47,7 @@ export const ConfirmationDialog: React.FC<{
       <Dialog onClose={handleClose} open={props.isDialogOpen}>
         <DialogTitle>建築確認審査</DialogTitle>
         <DialogContent>{ConfirmationForm}</DialogContent>
-        <Divider />
+        <Divider/>
         <DialogActions>
           <Button color={"error"} onClick={handleClose}>
             キャンセル
