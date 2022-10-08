@@ -28,7 +28,7 @@ const CheckBuilding = async (ifcViewer: IfcViewerAPI | undefined) => {
   const blob = new Blob([data], {type: "text/plain"});
   const value = await blob.text();
 
-  //  valueをlzmaで圧縮する
+  //  valueを圧縮する
 
   //  圧縮したvalueをAPIに投げる
 }
