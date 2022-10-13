@@ -15,6 +15,6 @@ export default defineConfig({
     emptyOutDir: true,
   },
   define: {
-    "process.env.REACT_APP_API_HOST": JSON.stringify(process.env.REACT_APP_API_HOST),
+    "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
   }
 });
