@@ -10,15 +10,15 @@ import {
   Divider,
 } from "@mui/material";
 import React from "react";
-import {IfcViewerAPI} from "web-ifc-viewer";
-import {Buffer} from "buffer";
+import { IfcViewerAPI } from "web-ifc-viewer";
+import { Buffer } from "buffer";
 import pako from "pako";
 
-import {API_HOST} from "../../../env/Index";
+import { API_HOST } from "../../../env/Index";
 
 const items = [
-  {id: 0, name: "第21条第1号"},
-  {id: 1, name: "第21条第2号"},
+  { id: 0, name: "第21条第1号" },
+  { id: 1, name: "第21条第2号" },
 ];
 
 const CheckBuilding = async (ifcViewer: IfcViewerAPI | undefined) => {
@@ -30,9 +30,9 @@ const CheckBuilding = async (ifcViewer: IfcViewerAPI | undefined) => {
   const data = await ifcViewer.IFC.loader.ifcManager.ifcAPI.ExportFileAsIFC(0);
 
   // valueを圧縮する
-  const blob = new Blob([data], {type: "text/plain"});
+  const blob = new Blob([data], { type: "text/plain" });
   const text = await blob.text();
-  const value = pako.gzip(text, {level: 9});
+  const value = pako.gzip(text, { level: 9 });
   const valueBase64 = Buffer.from(value).toString("base64");
 
   //  圧縮したvalueをAPIに投げる
@@ -86,7 +86,7 @@ export const ConfirmationDialog: React.FC<{
       <FormControl>
         {items.map((item) => (
           <FormControlLabel
-            control={<Checkbox/>}
+            control={<Checkbox />}
             label={item.name}
             key={item.id}
           />
@@ -100,7 +100,7 @@ export const ConfirmationDialog: React.FC<{
       <Dialog onClose={handleClose} open={props.isDialogOpen}>
         <DialogTitle>建築確認審査</DialogTitle>
         <DialogContent>{ConfirmationForm}</DialogContent>
-        <Divider/>
+        <Divider />
         <DialogActions>
           <Button color={"error"} onClick={handleClose}>
             キャンセル
