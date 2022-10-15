@@ -15,7 +15,6 @@ import {Buffer} from "buffer";
 import pako from "pako";
 
 import {API_HOST} from "../../../env";
-import {type} from "os";
 
 const items = [
   {id: 0, name: "第21条第1号"},
@@ -54,6 +53,15 @@ const CheckBuilding = async (ifcViewer: IfcViewerAPI | undefined) => {
   });
   response.json().then((data) => {
     console.log("data", data);
+
+    const file = new File(data, 'confirmation');
+
+    const link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = URL.createObjectURL(file);
+    link.download = 'confirmation.json';
+    link.click();
+    link.remove();
   });
 }
 
