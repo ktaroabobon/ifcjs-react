@@ -1,3 +1,6 @@
+# extra files
+.env.development
+
 # Logs
 logs
 *.log

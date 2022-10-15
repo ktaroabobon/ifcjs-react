@@ -12,6 +12,7 @@ setup:
 ifneq (,$(CI))
 	yarn install --frozen-lockfile
 else
+	cp .env.sample .env.development
 	yarn install
 endif
 
@@ -28,13 +29,13 @@ build:
 
 build/development: VITE_OPTS=--sourcemap
 build/development:
-	$(MAKE) build ENVIRONMENT=development VITE_OPTS='--sourcemap'
+	export $$(cat .env.development) > /dev/null; $(MAKE) build ENVIRONMENT=development VITE_OPTS='--sourcemap'
 
 build/development/watch:
 	$(MAKE) build/development VITE_OPTS='--watch --sourcemap'
 
 build/serve:
-	yarn run vite serve
+	export $$(cat .env.development) > /dev/null; yarn run vite serve --host 0.0.0.0
 
 fmt:
 ifneq (,$(CI))

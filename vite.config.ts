@@ -14,4 +14,7 @@ export default defineConfig({
     outDir: "../dist",
     emptyOutDir: true,
   },
+  define: {
+    "process.env.API_HOST": JSON.stringify(process.env.API_HOST),
+  },
 });
