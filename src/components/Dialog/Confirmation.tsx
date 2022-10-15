@@ -54,11 +54,11 @@ const CheckBuilding = async (ifcViewer: IfcViewerAPI | undefined) => {
   response.json().then((data) => {
     console.log("data", data);
 
-    const file = new File(data, 'confirmation');
+    const blob = new Blob([JSON.stringify(data, null, ' ')], {type: "application\/json"});
 
     const link = document.createElement('a');
     document.body.appendChild(link);
-    link.href = URL.createObjectURL(file);
+    link.href = URL.createObjectURL(blob);
     link.download = 'confirmation.json';
     link.click();
     link.remove();
