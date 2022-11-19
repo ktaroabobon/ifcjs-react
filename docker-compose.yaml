@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  viewer:
+    container_name: "viewer"
+    build:
+      context: .
+      args:
+        - API_HOST=${API_HOST}
+    env_file:
+      - .env.development
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+    tty: true

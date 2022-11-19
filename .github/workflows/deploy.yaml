@@ -19,14 +19,14 @@ jobs:
           cache: "yarn"
           cache-dependency-path: "yarn.lock"
 
-      - name: Setup
-        run: make setup
+      - name: Install dependencies
+        run: make install
 
       - name: Clean
         run: make clean
 
       - name: Build
-        run: make build ENVIRONMENT=production
+        run: make start ENVIRONMENT=production
         env:
           API_HOST: ${{ secrets.API_HOST }}
 

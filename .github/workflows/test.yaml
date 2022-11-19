@@ -19,8 +19,8 @@ jobs:
           cache: "yarn"
           cache-dependency-path: "yarn.lock"
 
-      - name: Setup
-        run: make setup
+      - name: Install dependencies
+        run: make install
 
       - name: Lint
         run: make lint
