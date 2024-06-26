@@ -1,6 +1,6 @@
 # ifcjs-react
 
-Sample project to show how to use [IFC.js](https://ifcjs.github.io/info/ja/) in a React app.
+Sample project to show how to use [web-ifc-viewr](https://github.com/ThatOpen/web-ifc-viewer) in a React app.
 
 ## Usage
 
